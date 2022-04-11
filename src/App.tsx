@@ -14,7 +14,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  CancelledError,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import { showNotification } from "@mantine/notifications";
 
 import { TodoItem } from "./components/TodoItem";
@@ -147,7 +152,7 @@ function App() {
 
   const doneMutation = useMutation<
     MarkTodoAsDoneTodoResponse,
-    HasuraError,
+    HasuraError | CancelledError,
     MarkTodoAsDoneVariables
   >(
     ({ id, text, ...data }) =>
@@ -198,6 +203,10 @@ function App() {
         });
       },
       onError: (err, data, context: PreviousTodosContext) => {
+        if (err instanceof CancelledError) {
+          return;
+        }
+
         queryClient.setQueryData("todos", context.previousTodos);
 
         showNotification({
@@ -292,7 +301,7 @@ function App() {
           </Center>
         ) : (
           <Box mb="xl">
-            <Paper shadow="xs">
+            <Paper className="todos" shadow="xs">
               {todos.data?.map((todo, idx) => {
                 return (
                   <React.Fragment key={todo.id}>
@@ -301,9 +310,8 @@ function App() {
                       completed={todo.completed}
                       onDone={handleDone(todo.id, todo.completed, todo.text)}
                       onDelete={handleDelete(todo.id, todo.text)}
-                    >
-                      {todo.text}
-                    </TodoItem>
+                      text={todo.text}
+                    />
                     {idx !== todos.data?.length - 1 && <Divider />}
                   </React.Fragment>
                 );

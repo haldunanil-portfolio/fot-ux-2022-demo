@@ -1,3 +1,5 @@
+import { APP_CONTAINER } from "../selectors/selectors.cy";
+
 describe("todos app", () => {
   beforeEach(() => {
     const BASE_URL = Cypress.env("base_url");
@@ -13,22 +15,18 @@ describe("todos app", () => {
     cy.visit("/");
 
     // assert that the app loaded
-    cy.get(".App").should("be.visible");
+    cy.get(APP_CONTAINER).should("be.visible");
   });
 
-  it.skip("should create todo correctly", () => {
+  it.skip("should handle failed todo create gracefully", () => {
     // TODO
   });
 
-  it.skip("should mark todo as done correctly", () => {
+  it.skip("should handle failed todo delete gracefully", () => {
     // TODO
   });
 
-  it.skip("should mark todo as pending correctly", () => {
-    // TODO
-  });
-
-  it.skip("should delete todo correctly", () => {
+  it.skip("should handle failed todo mark as done gracefully", () => {
     // TODO
   });
 });

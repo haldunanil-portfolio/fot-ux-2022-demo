@@ -4,19 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TodoItemProps } from "./types";
 
 export const TodoItem = ({
-  children,
   completed,
   disabled,
   id,
   onDone,
   onDelete,
+  text,
 }: TodoItemProps) => {
   return (
-    <Box id={id} className="todo-item" p="md">
+    <Box id={id} className="todo-item" data-text={text} p="md">
       <Grid>
         <Grid.Col span={10} sx={{ display: "flex", alignItems: "center" }}>
-          <Text sx={{ ...(completed && { textDecoration: "line-through" }) }}>
-            {children}
+          <Text
+            className="todo-text"
+            data-completed={completed}
+            sx={{ ...(completed && { textDecoration: "line-through" }) }}
+          >
+            {text}
           </Text>
         </Grid.Col>
         <Grid.Col span={2}>
