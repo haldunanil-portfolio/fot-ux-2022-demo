@@ -16,19 +16,19 @@ describe("todos app", () => {
     cy.get(".App").should("be.visible");
   });
 
-  it("should create todo correctly", () => {
+  it.skip("should create todo correctly", () => {
     // TODO
   });
 
-  it("should mark todo as done correctly", () => {
+  it.skip("should mark todo as done correctly", () => {
     // TODO
   });
 
-  it("should mark todo as pending correctly", () => {
+  it.skip("should mark todo as pending correctly", () => {
     // TODO
   });
 
-  it("should delete todo correctly", () => {
+  it.skip("should delete todo correctly", () => {
     // TODO
   });
 });

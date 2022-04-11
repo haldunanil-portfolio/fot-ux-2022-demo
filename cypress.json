@@ -1,4 +1,5 @@
 {
+  "projectId": "sfdm6e",
   "env": {
     "base_url": "https://equipped-goblin-35.hasura.app/api/rest"
   }

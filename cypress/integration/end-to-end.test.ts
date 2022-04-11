@@ -7,7 +7,7 @@ describe("todos app", () => {
     cy.get(".App").should("be.visible");
   });
 
-  it("should create todo, mark it as done, and delete it correctly", () => {
+  it.skip("should create todo, mark it as done, and delete it correctly", () => {
     // TODO
   });
 });
