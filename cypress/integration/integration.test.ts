@@ -10,7 +10,7 @@ describe("todos app", () => {
 
   it("loads app correctly", () => {
     // go to app
-    cy.visit("http://localhost:3000");
+    cy.visit("/");
 
     // assert that the app loaded
     cy.get(".App").should("be.visible");
