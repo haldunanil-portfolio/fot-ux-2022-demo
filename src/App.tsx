@@ -150,7 +150,7 @@ function App() {
     HasuraError,
     MarkTodoAsDoneVariables
   >(
-    ({ id, ...data }) =>
+    ({ id, text, ...data }) =>
       fetchHelper(`${TODOS_URL}/${id}/set-completed`, {
         method: "PATCH",
         body: JSON.stringify(data),
